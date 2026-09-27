@@ -469,7 +469,13 @@
         }
         return result;
       };
-      const homeTrailItems = shuffleCatalog(allProjects.flatMap(item =>
+      const homeTrailItems = shuffleCatalog([
+        ...allProjects.flatMap(item =>
+          item.images.map((src, imageIndex) => ({ src, project: item, imageIndex }))
+        ),
+        { src: 'assets/img/profile/amogh_raikar.jpg', project: allProjects[0], imageIndex: 0 }
+      ]);
+      const _unusedOldTrail = shuffleCatalog(allProjects.flatMap(item =>
         item.images.map((src, imageIndex) => ({ src, project: item, imageIndex }))
       ));
       let activeProject = projectBySlug.get('karatcore-erp') || allProjects[0];
@@ -3979,7 +3985,7 @@
           ABOUT: {
             title: 'ABOUT',
             imageAlt: 'Amogh R Raikar — Software Developer & Creative Technologist',
-            imagePool: projectBySlug.get('karatcore-erp')?.images || [],
+            imagePool: ['assets/img/profile/amogh_raikar.jpg'],
             copy: `
               <p>I\'m <strong style="color:var(--cursor-color)">Amogh R Raikar</strong>, a BCA student, software developer, and technology enthusiast passionate about building practical software solutions and exploring emerging technologies based in Bengaluru, India.</p>
               <p>My interests include full-stack development, artificial intelligence, cybersecurity, blockchain, and UI/UX design. I enjoy transforming ideas into functional applications, solving real-world problems through technology, and creating intuitive digital experiences.</p>
@@ -4041,7 +4047,7 @@
           CONTACT: {
             title: 'CONTACT',
             imageAlt: 'Contact Amogh R Raikar',
-            imagePool: projectBySlug.get('mentra-ai')?.images || [],
+            imagePool: ['assets/img/profile/amogh_raikar.jpg'],
             copy: `
               <div class="viewer-contact-details">
                 <h2>AMOGH R RAIKAR</h2>
@@ -8491,7 +8497,7 @@
           ABOUT: {
             title: 'ABOUT',
             imageAlt: 'Amogh R Raikar — Software Developer & Creative Technologist',
-            imagePool: projectBySlug.get('karatcore-erp')?.images || [],
+            imagePool: ['assets/img/profile/amogh_raikar.jpg'],
             copy: `
               <p>I\'m <strong style="color:var(--cursor-color)">Amogh R Raikar</strong>, a BCA student, software developer, and technology enthusiast passionate about building practical software solutions and exploring emerging technologies based in Bengaluru, India.</p>
               <p>My interests include full-stack development, artificial intelligence, cybersecurity, blockchain, and UI/UX design. I enjoy transforming ideas into functional applications, solving real-world problems through technology, and creating intuitive digital experiences.</p>
@@ -8553,7 +8559,7 @@
           CONTACT: {
             title: 'CONTACT',
             imageAlt: 'Contact Amogh R Raikar',
-            imagePool: projectBySlug.get('mentra-ai')?.images || [],
+            imagePool: ['assets/img/profile/amogh_raikar.jpg'],
             copy: `
               <div class="viewer-contact-details">
                 <h2>AMOGH R RAIKAR</h2>
@@ -12347,7 +12353,7 @@
           ABOUT: {
             title: 'ABOUT',
             imageAlt: 'Amogh R Raikar — Software Developer & Creative Technologist',
-            imagePool: projectBySlug.get('karatcore-erp')?.images || [],
+            imagePool: ['assets/img/profile/amogh_raikar.jpg'],
             copy: `
               <p>I\'m <strong style="color:var(--cursor-color)">Amogh R Raikar</strong>, a BCA student, software developer, and technology enthusiast passionate about building practical software solutions and exploring emerging technologies based in Bengaluru, India.</p>
               <p>My interests include full-stack development, artificial intelligence, cybersecurity, blockchain, and UI/UX design. I enjoy transforming ideas into functional applications, solving real-world problems through technology, and creating intuitive digital experiences.</p>
@@ -12409,7 +12415,7 @@
           CONTACT: {
             title: 'CONTACT',
             imageAlt: 'Contact Amogh R Raikar',
-            imagePool: projectBySlug.get('mentra-ai')?.images || [],
+            imagePool: ['assets/img/profile/amogh_raikar.jpg'],
             copy: `
               <div class="viewer-contact-details">
                 <h2>AMOGH R RAIKAR</h2>
