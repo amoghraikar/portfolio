@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROJECTS — Amogh R Raikar Architecture &amp; Works</title>
+  <meta name="description" content="Selected projects by Amogh R Raikar spanning full-stack ERP systems, AI study assistants with computer vision, and cryptographic blockchain engines.">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260927-1">
+  <style>
+    .page-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 140px 32px 80px;
+    }
+    .page-header {
+      margin-bottom: 60px;
+    }
+    .page-title {
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: .95;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      color: #fff;
+    }
+    .page-subtitle {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: clamp(15px, 1.4vw, 18px);
+      max-width: 650px;
+      line-height: 1.5;
+      color: #888;
+      margin: 0;
+    }
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+    }
+    .project-card {
+      position: relative;
+      background: #101010;
+      border: 1px solid #222;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color .28s ease, transform .28s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--cursor-color, #baff00);
+      transform: translateY(-4px);
+    }
+    .project-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+      background: #050505;
+    }
+    .project-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease, filter .4s ease;
+    }
+    .project-card:hover .project-thumb {
+      transform: scale(1.04);
+    }
+    .project-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .project-name {
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .project-stack {
+      font-family: 'AmstradPC', monospace, sans-serif;
+      font-size: 13px;
+      color: var(--cursor-color, #baff00);
+      margin-bottom: 14px;
+    }
+    .project-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #1f1f1f;
+      padding-top: 14px;
+      margin-top: auto;
+    }
+    .project-tag {
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .06em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #1c1c1c;
+      color: #bbb;
+    }
+    .project-link-btn {
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      font-size: 12px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .project-link-btn:hover {
+      color: var(--cursor-color, #baff00);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Perimeter Interface Navigation -->
+  <nav class="interface" aria-label="Primary portfolio navigation">
+    <div class="brand-nav">
+      <span class="tokonoma-logo-frame">
+        <img class="tokonoma-logo" src="assets/img/misc/tokonoma_logo.png" alt="Amogh R Raikar">
+      </span>
+      <a class="nav-pill vertical" href="about.html"><span class="nav-pill-label">ABOUT</span></a>
+      <a class="nav-pill vertical" href="index.html" style="background:#fff; color:#000;"><span class="nav-pill-label">HOME</span></a>
+    </div>
+
+    <div class="center-nav">
+      <a class="nav-pill" href="index.html"><span class="nav-pill-label">FULL-STACK</span></a>
+      <a class="nav-pill ai-pill" href="index.html"><span class="nav-pill-label">AI &amp; CV</span></a>
+      <a class="nav-pill" href="index.html"><span class="nav-pill-label">BLOCKCHAIN</span></a>
+    </div>
+
+    <div class="right-nav">
+      <a class="nav-pill" href="about.html#skills"><span class="nav-pill-label">SKILLS</span></a>
+      <a class="nav-pill vertical" href="contact.html"><span class="nav-pill-label">CONTACT</span></a>
+      <a class="nav-pill instagram-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <span class="nav-pill-label">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Editorial Projects Index Grid -->
+  <div class="page-container">
+    <header class="page-header">
+      <h1 class="page-title">SELECTED<br>INDEX</h1>
+      <p class="page-subtitle">
+        Curated systems across full-stack ERP architecture, AI academic copilots, computer vision attention models, and cryptographic distributed ledgers.
+      </p>
+    </header>
+
+    <div class="editorial-grid">
+      <!-- KaratCore ERP -->
+      <a class="project-card" href="https://github.com/amoghraikar/Karatcore-ERP" target="_blank" rel="noopener">
+        <div class="project-thumb-wrap">
+          <img class="project-thumb" src="assets/img/projects/karatcore-1.jpg" alt="KaratCore ERP Dashboard">
+        </div>
+        <div class="project-info">
+          <div>
+            <div class="project-name">KARATCORE ERP</div>
+            <div class="project-desc">A comprehensive enterprise management platform for jewellery businesses and gold pledge-loan operations. Features gold valuation calculation, pledge tracking, interest calculations, payments, and financial reporting.</div>
+            <div class="project-stack">&gt; Flutter / Python / FastAPI / PostgreSQL / Redis / Docker</div>
+          </div>
+          <div class="project-meta-bar">
+            <span class="project-tag">FINTECH / ERP</span>
+            <span class="project-link-btn">GITHUB &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Mentra AI -->
+      <a class="project-card" href="https://github.com/amoghraikar" target="_blank" rel="noopener">
+        <div class="project-thumb-wrap">
+          <img class="project-thumb" src="assets/img/projects/mentra-1.jpg" alt="Mentra AI Study Coach">
+        </div>
+        <div class="project-info">
+          <div>
+            <div class="project-name">MENTRA — AI STUDY COACH</div>
+            <div class="project-desc">An AI-powered academic companion designed to help students organize study routines, track goals, and maintain focus. Integrates AI study assistants, gamified progress metrics, and computer-vision gaze and attention tracking.</div>
+            <div class="project-stack">&gt; Python / Computer Vision / AI Models / FastAPI / Web UI</div>
+          </div>
+          <div class="project-meta-bar">
+            <span class="project-tag">AI / COMPUTER VISION</span>
+            <span class="project-link-btn">EXPLORE &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Mini Blockchain -->
+      <a class="project-card" href="https://github.com/amoghraikar/blockchain-project-1" target="_blank" rel="noopener">
+        <div class="project-thumb-wrap">
+          <img class="project-thumb" src="assets/img/projects/blockchain-1.jpg" alt="Mini Blockchain Engine">
+        </div>
+        <div class="project-info">
+          <div>
+            <div class="project-name">MINI BLOCKCHAIN</div>
+            <div class="project-desc">A Python-based blockchain system implementing core distributed ledger mechanics. Explores cryptographic SHA-256 block hashing, chain immutability validation, transaction mempools, and Proof-of-Work consensus.</div>
+            <div class="project-stack">&gt; Python / Cryptographic Hashing / Proof-of-Work / P2P</div>
+          </div>
+          <div class="project-meta-bar">
+            <span class="project-tag">BLOCKCHAIN / SYSTEMS</span>
+            <span class="project-link-btn">GITHUB &rarr;</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="cursor-action" id="cursorAction" aria-hidden="true">
+    <span class="cursor-action-label" id="cursorActionLabel"></span>
+  </div>
+
+  <script src="assets/js/app.js?v=20260927-1" defer></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "projectCatalog": {
+    "FULL-STACK": [
+      {
+        "category": "FULL-STACK",
+        "slug": "karatcore-erp",
+        "title": "KARATCORE ERP",
+        "folder": "assets/img/projects/",
+        "images": [
+          "assets/img/projects/karatcore-1.jpg",
+          "assets/img/projects/karatcore-2.jpg",
+          "assets/img/projects/karatcore-3.jpg"
+        ]
+      }
+    ],
+    "AI & CV": [
+      {
+        "category": "AI & CV",
+        "slug": "mentra-ai",
+        "title": "MENTRA — AI STUDY COACH",
+        "folder": "assets/img/projects/",
+        "images": [
+          "assets/img/projects/mentra-1.jpg",
+          "assets/img/projects/mentra-2.jpg",
+          "assets/img/projects/mentra-3.jpg"
+        ]
+      }
+    ],
+    "BLOCKCHAIN": [
+      {
+        "category": "BLOCKCHAIN",
+        "slug": "mini-blockchain",
+        "title": "MINI BLOCKCHAIN",
+        "folder": "assets/img/projects/",
+        "images": [
+          "assets/img/projects/blockchain-1.jpg",
+          "assets/img/projects/blockchain-2.jpg",
+          "assets/img/projects/blockchain-3.jpg"
+        ]
+      }
+    ]
+  },
+  "projectInfo": {
+    "karatcore-erp": [
+      "Project: KaratCore ERP",
+      "Role: Lead Developer",
+      "Category: Full-Stack / FinTech / ERP",
+      "Stack: Flutter, Python, FastAPI, PostgreSQL, Redis, Docker, Riverpod",
+      "Capabilities: Gold valuation, pledge tracking, interest calculations & billing",
+      "GitHub: github.com/amoghraikar/Karatcore-ERP"
+    ],
+    "mentra-ai": [
+      "Project: Mentra — AI Study Coach",
+      "Role: Solo Developer",
+      "Category: AI, Productivity & Computer Vision",
+      "Stack: Python, AI Models, Computer Vision, FastAPI, Modern UI",
+      "Capabilities: Task scheduling, gamified progress & CV attention monitoring",
+      "GitHub: github.com/amoghraikar"
+    ],
+    "mini-blockchain": [
+      "Project: Mini Blockchain",
+      "Role: Developer",
+      "Category: Blockchain & Distributed Systems",
+      "Stack: Python, Cryptographic Hashing (SHA-256), Proof-of-Work",
+      "Capabilities: Distributed ledger, block mining & chain validation",
+      "GitHub: github.com/amoghraikar/blockchain-project-1"
+    ]
+  }
+}
