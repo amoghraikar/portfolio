@@ -307,14 +307,15 @@
         }
       }
     }
-    const file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-    const run = file === 'index.html' || !/\.html$/.test(file)
+    const rawFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    const file = rawFile.replace(/\.html$/, '') || 'index';
+    const run = file === 'index' || file === ''
       ? runHome
-      : /^(about|contact)\.html$/.test(file)
+      : /^(about|contact)$/.test(file)
         ? runStatic
         : runProject;
     if (run === runHome && (location.search || location.hash)) {
-      const cleanHomeUrl = new URL('index.html', location.href);
+      const cleanHomeUrl = new URL(location.pathname.endsWith('.html') ? 'index.html' : './', location.href);
       cleanHomeUrl.search = '';
       cleanHomeUrl.hash = '';
       history.replaceState({ page: 'home' }, '', cleanHomeUrl.pathname);
@@ -480,14 +481,16 @@
       ));
       let activeProject = projectBySlug.get('karatcore-erp') || allProjects[0];
       let images = activeProject.images;
-      const pageFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const rawPageFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const pageFile = rawPageFile.replace(/\.html$/, '') || 'index';
       const pageSection = ({
-        'analog.html': 'ANALOG',
-        'ai.html': 'AI',
-        'aito.html': 'AITO',
-        'shows.html': 'SHOWS',
-        'about.html': 'ABOUT',
-        'contact.html': 'CONTACT'
+        'analog': 'ANALOG',
+        'ai': 'AI',
+        'aito': 'AITO',
+        'shows': 'SHOWS',
+        'about': 'ABOUT',
+        'contact': 'CONTACT',
+        'projects': 'PROJECTS'
       })[pageFile] || 'HOME';
 
       const area = document.querySelector('#trailArea');
@@ -848,6 +851,21 @@
           location.href = href;
           return;
         }
+        const cleanTarget = (href || '').split('?')[0].replace(/^(\.\/|\/)/, '').replace(/\.html$/, '');
+        if (cleanTarget === 'about' && typeof openStaticPageWithSweep === 'function') {
+          try {
+            history.pushState({ section: 'ABOUT' }, '', location.pathname.endsWith('.html') ? 'about.html' : 'about');
+          } catch (_) {}
+          await openStaticPageWithSweep('ABOUT');
+          return;
+        }
+        if (cleanTarget === 'contact' && typeof openStaticPageWithSweep === 'function') {
+          try {
+            history.pushState({ section: 'CONTACT' }, '', location.pathname.endsWith('.html') ? 'contact.html' : 'contact');
+          } catch (_) {}
+          await openStaticPageWithSweep('CONTACT');
+          return;
+        }
         homeNavigationTransitioning = true;
         cancelIdleImage();
         if (sourceElement?.classList?.contains('nav-pill')) {
@@ -872,7 +890,10 @@
           easing: 'cubic-bezier(.65, 0, .35, 1)',
           fill: 'forwards'
         }));
-        await Promise.all(fades.map(animation => animation.finished.catch(() => {})));
+        await Promise.race([
+          Promise.all(fades.map(animation => animation.finished.catch(() => {}))),
+          new Promise(r => setTimeout(r, 600))
+        ]);
         location.href = href;
       }
 
@@ -1323,6 +1344,16 @@
           }
           body.dragging = false;
           body.element.classList.remove('dragging');
+          if (!body.dragMoved && event.type === 'pointerup') {
+            if (body.externalLink) {
+              window.open(body.element.href, '_blank', 'noopener');
+            } else {
+              const href = body.element?.getAttribute?.('href');
+              if (href) {
+                navigateFromHome(href, body.element);
+              }
+            }
+          }
           if (wrongRelease) {
             showReaction('nope');
             if (isAwwwardsRibbon) showRibbonErrorPrompt();
@@ -4655,14 +4686,16 @@
       ));
       let activeProject = projectBySlug.get('karatcore-erp') || allProjects[0];
       let images = activeProject.images;
-      const pageFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const rawPageFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const pageFile = rawPageFile.replace(/\.html$/, '') || 'index';
       const pageSection = ({
-        'analog.html': 'ANALOG',
-        'ai.html': 'AI',
-        'aito.html': 'AITO',
-        'shows.html': 'SHOWS',
-        'about.html': 'ABOUT',
-        'contact.html': 'CONTACT'
+        'analog': 'ANALOG',
+        'ai': 'AI',
+        'aito': 'AITO',
+        'shows': 'SHOWS',
+        'about': 'ABOUT',
+        'contact': 'CONTACT',
+        'projects': 'PROJECTS'
       })[pageFile] || 'HOME';
 
       const area = document.querySelector('#trailArea');
@@ -9179,14 +9212,16 @@
       ));
       let activeProject = projectBySlug.get('karatcore-erp') || allProjects[0];
       let images = activeProject.images;
-      const pageFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const rawPageFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const pageFile = rawPageFile.replace(/\.html$/, '') || 'index';
       const pageSection = ({
-        'analog.html': 'ANALOG',
-        'ai.html': 'AI',
-        'aito.html': 'AITO',
-        'shows.html': 'SHOWS',
-        'about.html': 'ABOUT',
-        'contact.html': 'CONTACT'
+        'analog': 'ANALOG',
+        'ai': 'AI',
+        'aito': 'AITO',
+        'shows': 'SHOWS',
+        'about': 'ABOUT',
+        'contact': 'CONTACT',
+        'projects': 'PROJECTS'
       })[pageFile] || 'HOME';
 
       const area = document.querySelector('#trailArea');

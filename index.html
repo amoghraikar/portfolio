@@ -28,8 +28,9 @@
   <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon-dm.ico" media="(prefers-color-scheme: dark)">
   <script>
     (() => {
-      const file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-      const sectionPage = /^(about|contact|projects)\.html$/.test(file);
+      const rawFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const file = rawFile.replace(/\.html$/, '') || 'index';
+      const sectionPage = /^(about|contact|projects)$/.test(file);
       if (matchMedia('(max-width: 700px), (hover: none) and (pointer: coarse) and (max-width: 1100px)').matches && !sectionPage) {
         document.documentElement.classList.add('mobile-index');
       }
