@@ -1,0 +1,620 @@
+/* Tokonoma Experiments — shared site styles
+   Used by every experiment page (index.html, emoji-drawing.html, ...) */
+
+@font-face {
+  font-family: 'EurostileMN';
+  src: url('../../../assets/font/EurostileMNExtendedBold.ttf') format('truetype'),
+       url('../font/EurostileMNExtendedBold.ttf') format('truetype'),
+       url('/assets/font/EurostileMNExtendedBold.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ac437 Amstrad PC-2y';
+  src: url('../../../assets/font/Ac437_Amstrad_PC-2y.ttf') format('truetype'),
+       url('../font/Ac437_Amstrad_PC-2y.ttf') format('truetype'),
+       url('/assets/font/Ac437_Amstrad_PC-2y.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --bg: #0a0d12;
+  --panel: #10151d;
+  --cyan: #5eebd8;
+  --coral: #ff6b8b;
+  --text: #e8edf2;
+  --muted: #7c8797;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* "Made by tokonoma" — fixed top-left on every page */
+#siteHeader { position: fixed; top: 18px; left: 18px; z-index: 20; }
+#siteHeader a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+#siteHeader a:hover { color: var(--text); }
+#siteHeader img { width: 48px; height: 48px; object-fit: contain; display: block; }
+
+/* Root Tokonoma logo structure and positioning, copied exactly. */
+.interface {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+  font-weight: 700;
+}
+.brand-nav {
+  position: absolute;
+  left: 55.8125px;
+  top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.tokonoma-logo-frame { display: block; }
+.tokonoma-logo-link { position: relative; display: block; pointer-events: auto; }
+.made-by {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  color: #8c929d;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+.tokonoma-logo {
+  display: block;
+  width: 40.53px;
+  height: 58px;
+  object-fit: contain;
+  pointer-events: auto;
+  transition: opacity .15s ease;
+}
+.tokonoma-logo-bye {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
+}
+.tokonoma-logo-link.show-bye .tokonoma-logo { opacity: 0; }
+.tokonoma-logo-link.show-bye .tokonoma-logo-bye { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .tokonoma-logo-link:hover .tokonoma-logo { opacity: 0; }
+  .tokonoma-logo-link:hover .tokonoma-logo-bye { opacity: 1; }
+}
+
+/* Labz DOS directory controls. */
+.labzNav {
+  gap: 12px !important;
+  top: 45px !important;
+}
+.labzNav .nav-pill {
+  position: relative;
+  height: auto !important;
+  min-height: 32px;
+  padding: 3px 10px 7px !important;
+  border: 0 !important;
+  border-bottom: 3px double currentColor !important;
+  border-radius: 0 !important;
+  background: #000 !important;
+  color: #9da49e !important;
+  font-family: 'Ac437 Amstrad PC-2y', 'Courier New', monospace !important;
+  font-size: 16px !important;
+  line-height: 1.15 !important;
+  letter-spacing: .02em;
+  transition: color .12s steps(2), background-color .12s steps(2), transform .14s ease !important;
+}
+.labzNav .nav-pill::before { content: '║  '; }
+.labzNav .nav-pill::after { content: '  ║'; }
+.labzNav .nav-pill:hover,
+.labzNav .nav-pill:focus-visible {
+  background: #0000ff !important;
+  color: #fff !important;
+  outline: 0;
+  transform: translateY(-2px);
+}
+.labzNav .nav-pill.active {
+  background: #d7dcd7 !important;
+  color: #000 !important;
+}
+.labzNav .nav-pill.active:hover,
+.labzNav .nav-pill.active:focus-visible {
+  background: #c8ff00 !important;
+  color: #000 !important;
+}
+.nav-pill[aria-disabled="true"] {
+  cursor: not-allowed !important;
+}
+.labzNav .nav-pill[aria-disabled="true"],
+.labzNav .nav-pill[aria-disabled="true"]:hover,
+.labzNav .nav-pill[aria-disabled="true"]:focus-visible {
+  background: #000 !important;
+  color: #555b56 !important;
+  transform: none !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  .labzNav::after {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    opacity: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(90deg, #fff 50%, transparent 50%),
+      linear-gradient(90deg, #fff 50%, transparent 50%),
+      linear-gradient(0deg, #fff 50%, transparent 50%),
+      linear-gradient(0deg, #fff 50%, transparent 50%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 10px 2px, 10px 2px, 2px 10px, 2px 10px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    transition: opacity .15s ease;
+  }
+  .labzNav:hover::after {
+    opacity: 1;
+    animation: labzNavMarchingAnts .5s linear infinite;
+  }
+}
+@keyframes labzNavMarchingAnts {
+  to { background-position: 10px 0, -10px 100%, 0 10px, 100% -10px; }
+}
+.dir-row .size { text-align: left !important; }
+.terminal-char { animation-duration: .13s !important; }
+
+/* Extra breathing room below the filter controls. */
+.terminal { padding-top: 160px !important; }
+.terminal .dir-viewport { height: calc(100vh - 253px) !important; }
+.ascii-stage {
+  bottom: 24px !important;
+}
+
+.desktop-view-notice { display: none; }
+
+.agency-watch {
+  position: fixed;
+  top: 61px;
+  right: 55.8125px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  transform: translateY(-50%);
+  color: #9da49e;
+  font-family: 'Ac437 Amstrad PC-2y', monospace;
+  font-size: 16px;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.agency-watch img {
+  display: block;
+  width: auto;
+  height: 60px;
+  object-fit: contain;
+}
+.agency-name-window {
+  position: relative;
+  display: block;
+  width: 220px;
+  height: 1.1em;
+  overflow: hidden;
+}
+.agency-name-current,
+.agency-name-next {
+  position: absolute;
+  inset: 0 0 auto;
+  display: block;
+  height: 1.1em;
+  line-height: 1.1em;
+  text-align: right;
+  transition: transform .55s cubic-bezier(.22,.72,.18,1);
+  will-change: transform;
+}
+.agency-name-next { transform: translateY(100%); }
+.agency-name-window.is-rolling .agency-name-current { transform: translateY(-100%); }
+.agency-name-window.is-rolling .agency-name-next { transform: translateY(0); }
+
+@media (max-width: 1024px) {
+  .agency-watch { display: none; }
+  .desktop-view-notice {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 32px;
+    padding: 7px 0 6px;
+    overflow: hidden;
+    background: rgb(0, 0, 255);
+    color: #fff;
+    font-family: 'Bubble Pixel', 'Ac437 Amstrad PC-2y', monospace;
+    font-size: 14px;
+    line-height: 1;
+    text-align: left;
+  }
+  .brand-nav { top: 64px; left: 24px; }
+  .labzNav { top: 77px !important; }
+}
+
+.desktop-view-notice-track {
+  display: flex;
+  width: max-content;
+  flex: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+  animation: desktopNoticeMarquee 60s linear infinite;
+  will-change: transform;
+}
+.desktop-view-notice-track > span { flex: none; }
+.desktop-view-notice-track .notice-shrug { font-family: Arial, sans-serif; }
+@media (hover: none) and (pointer: coarse) {
+  .ascii-stage { display: none !important; }
+}
+@keyframes desktopNoticeMarquee {
+  to { transform: translateX(-50%); }
+}
+
+.scroll-cue {
+  position: fixed;
+  z-index: 45;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .2s ease;
+}
+.scroll-cue.hide { opacity: 0; }
+.scroll-cue svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.scroll-cue-ring {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+  animation: scrollCueAnts .6s linear infinite;
+}
+.scroll-cue-chevron {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 4 4;
+  animation: scrollCueAnts .6s linear infinite;
+}
+@keyframes scrollCueAnts {
+  to { stroke-dashoffset: -8; }
+}
+
+/* Project-page exit: a blue difference-blend scan followed by staggered fades. */
+.page-sweep {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  pointer-events: none;
+  background: rgb(0, 0, 255);
+  mix-blend-mode: difference;
+  opacity: 0;
+  transform-origin: left center;
+  transform: translate3d(0, 0, 0) scaleX(0);
+  will-change: transform, opacity;
+}
+body.project-exit .page-sweep {
+  opacity: 1;
+  animation: labzBlueSweep 1.08s linear forwards;
+}
+@keyframes labzBlueSweep {
+  0% { transform: translate3d(0, 0, 0) scaleX(0); }
+  52% { transform: translate3d(0, 0, 0) scaleX(1); animation-timing-function: cubic-bezier(.55,0,.15,1); }
+  100% { transform: translate3d(100%, 0, 0) scaleX(1); }
+}
+.page-blackout {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: #000;
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+body.project-exit .page-blackout {
+  animation: labzBlackWake 1.08s linear forwards;
+}
+@keyframes labzBlackWake {
+  0%,52% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+body.home-exit .page-sweep {
+  opacity: 1;
+  transform-origin: top center;
+  animation: labzBlueSweepDown 1.08s linear forwards;
+}
+@keyframes labzBlueSweepDown {
+  0% { transform: translate3d(0,0,0) scaleY(0); }
+  52% { transform: translate3d(0,0,0) scaleY(1); }
+  100% { transform: translate3d(0,100%,0) scaleY(1); }
+}
+body.home-exit .page-blackout {
+  clip-path: inset(0 0 100% 0);
+  animation: labzBlackWakeDown 1.08s linear forwards;
+}
+@keyframes labzBlackWakeDown {
+  0%,52% { clip-path: inset(0 0 100% 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+body.project-return .page-sweep-return {
+  opacity: 1;
+  transform-origin: right center;
+  animation: labzBlueSweepReturn 1.08s linear forwards;
+}
+@keyframes labzBlueSweepReturn {
+  0% { transform: translate3d(0,0,0) scaleX(0); }
+  52% { transform: translate3d(0,0,0) scaleX(1); }
+  100% { transform: translate3d(-100%,0,0) scaleX(1); }
+}
+body.project-return .page-blackout-return {
+  clip-path: inset(0 0 0 100%);
+  animation: labzBlackWakeReturn 1.08s linear forwards;
+}
+@keyframes labzBlackWakeReturn {
+  0%,52% { clip-path: inset(0 0 0 100%); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+#overlay,#stage,#bg-canvas,#hud,#status,.postit,.backButton {
+  transition: opacity .34s cubic-bezier(.22,.75,.18,1), transform .34s cubic-bezier(.22,.75,.18,1);
+}
+body.project-return-fade .backButton { opacity:0; transform:translate3d(12px,0,0)!important; transition-delay:0s; }
+body.project-return-fade #hud,body.project-return-fade #status { opacity:0; transform:translate3d(-12px,0,0); transition-delay:.07s; }
+body.project-return-fade .postit { opacity:0; transform:translate3d(-16px,0,0)!important; transition-delay:.14s; }
+body.project-return-fade #overlay,body.project-return-fade #stage,body.project-return-fade #bg-canvas { opacity:0; transform:translate3d(-20px,0,0); transition-delay:.21s; }
+.interface,.labzNav,.prompt,.volume,.dir-head,.dir-row,.ascii-stage {
+  transition-property: opacity, transform;
+  transition-duration: .34s;
+  transition-timing-function: cubic-bezier(.22,.75,.18,1);
+}
+body.project-fade .interface { opacity: 0; transform: translate3d(-12px,-8px,0); transition-delay: 0s; }
+body.project-fade .labzNav { opacity: 0; transform: translate3d(-50%,-10px,0); transition-delay: .05s; }
+body.project-fade .prompt { opacity: 0; transform: translate3d(14px,0,0); transition-delay: .10s; }
+body.project-fade .volume { opacity: 0; transform: translate3d(14px,0,0); transition-delay: .15s; }
+body.project-fade .dir-head { opacity: 0; transform: translate3d(18px,0,0); transition-delay: .20s; }
+body.project-fade .dir-row { opacity: 0 !important; transform: translate3d(22px,0,0) !important; transition-delay: var(--exit-delay, .24s) !important; }
+body.project-fade .ascii-stage { opacity: 0 !important; transform: translate3d(-50%,12px,0); transition-delay: .34s; }
+
+@media (max-width: 780px) {
+  .cursor-trail { display: none !important; }
+  .terminal {
+    width: calc(100% - 24px) !important;
+    padding-top: 140px !important;
+    padding-bottom: calc(62px + env(safe-area-inset-bottom)) !important;
+  }
+  .terminal .dir-viewport {
+    height: calc(100vh - 249px - env(safe-area-inset-bottom)) !important;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    touch-action: pan-x pan-y;
+    scrollbar-width: none;
+  }
+  .terminal .dir-viewport::-webkit-scrollbar { display: none; }
+  .terminal .volume { display: none !important; }
+  .ascii-stage { display: none !important; }
+  .labzNav {
+    top: auto !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 12px 24px calc(20px + env(safe-area-inset-bottom)) !important;
+    gap: 16px !important;
+    transform: none !important;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    scrollbar-width: none;
+    background: #000;
+  }
+  .labzNav::-webkit-scrollbar { display: none; }
+  .labzNav .nav-pill {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 7px 10px 10px !important;
+    font-size: 16px !important;
+  }
+  .labzNav .nav-pill::before { content: '║ '; }
+  .labzNav .nav-pill::after { content: ' ║'; }
+  .labzNav.has-scroll-right:not(.has-scroll-left) {
+    -webkit-mask-image: linear-gradient(to right,#000 0,#000 calc(100% - 44px),transparent 100%);
+    mask-image: linear-gradient(to right,#000 0,#000 calc(100% - 44px),transparent 100%);
+  }
+  .labzNav.has-scroll-left:not(.has-scroll-right) {
+    -webkit-mask-image: linear-gradient(to right,transparent 0,#000 44px,#000 100%);
+    mask-image: linear-gradient(to right,transparent 0,#000 44px,#000 100%);
+  }
+  .labzNav.has-scroll-left.has-scroll-right {
+    -webkit-mask-image: linear-gradient(to right,transparent 0,#000 44px,#000 calc(100% - 44px),transparent 100%);
+    mask-image: linear-gradient(to right,transparent 0,#000 44px,#000 calc(100% - 44px),transparent 100%);
+  }
+  .dir-viewport.has-scroll-right:not(.has-scroll-left) {
+    -webkit-mask-image: linear-gradient(to right,#000 0,#000 calc(100% - 76px),rgba(0,0,0,.35) 100%);
+    mask-image: linear-gradient(to right,#000 0,#000 calc(100% - 76px),rgba(0,0,0,.35) 100%);
+  }
+  .dir-viewport.has-scroll-left:not(.has-scroll-right) {
+    -webkit-mask-image: linear-gradient(to right,rgba(0,0,0,.35) 0,#000 76px,#000 100%);
+    mask-image: linear-gradient(to right,rgba(0,0,0,.35) 0,#000 76px,#000 100%);
+  }
+  .dir-viewport.has-scroll-left.has-scroll-right {
+    -webkit-mask-image: linear-gradient(to right,rgba(0,0,0,.35) 0,#000 76px,#000 calc(100% - 76px),rgba(0,0,0,.35) 100%);
+    mask-image: linear-gradient(to right,rgba(0,0,0,.35) 0,#000 76px,#000 calc(100% - 76px),rgba(0,0,0,.35) 100%);
+  }
+}
+
+/* Reusable back-to-menu icon button.
+   Fixed to the left edge, vertically centered, flush with the site header's left offset. */
+.backButton {
+  position: fixed;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(16, 21, 29, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  text-decoration: none;
+  transition: transform 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.backButton:hover {
+  color: var(--text);
+  border-color: rgba(94, 235, 216, 0.35);
+  transform: translateY(-50%) translateX(-2px);
+}
+.backButton svg { width: 18px; height: 18px; display: block; }
+
+/* Aqua gel button — reusable recipe (gradient, inset highlight, drop shadow,
+   pressed state). Add class="aquaButton" to any <button>; set size/shape
+   (pill vs. circle, padding, font-size) per use on the page itself. */
+.aquaButton {
+  border: 2px solid #1b347d;
+  background: linear-gradient(to bottom, #96c1e9 0%, #58ade9 45%, #b1e9ff 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.85),
+    inset 0 -3px 5px rgba(27,52,125,.35),
+    0 2px 0 #101c48,
+    0 4px 7px rgba(0,0,0,.55);
+  color: #000;
+  font-family: 'EurostileMN', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(255,255,255,.35);
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 400ms cubic-bezier(.25,1,.5,1), box-shadow 0.2s ease;
+}
+.aquaButton:hover { filter: brightness(1.08); }
+.aquaButton:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 3px 7px rgba(0,0,0,.25),
+    inset 0 -1px 2px rgba(255,255,255,.4),
+    0 1px 0 #101c48;
+}
+.aquaButton:disabled { opacity: 0.6; cursor: default; filter: none; }
+
+/* Instructions post-it — press "i" on a sketch page to toggle. */
+.postit {
+  display: none;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  z-index: 30;
+  width: min(320px, 80vw);
+  background: #fff3a3;
+  color: #2a2a1a;
+  padding: 22px 22px 20px;
+  border-radius: 2px;
+  box-shadow: 0 16px 34px -10px rgba(0,0,0,0.55), 0 2px 0 rgba(0,0,0,0.08);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.postit.visible { display: block; }
+.postit::before {
+  content: '';
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 70px; height: 26px;
+  background: rgba(255,255,255,0.55);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.postit h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.postit p { margin: 0 0 8px; }
+.postit p:last-child { margin-bottom: 0; }
+.postit .postitClose {
+  position: absolute;
+  top: 6px; right: 8px;
+  width: 24px; height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1;
+  color: rgba(0,0,0,0.4);
+}
+.postit .postitClose:hover { color: #000; }
+
+/* iPad/tablet LABZ filters: bottom dock, keeping the DOS treatment. */
+@media (min-width: 701px) and (max-width: 1100px) and (hover: none) and (pointer: coarse) {
+  .labzNav {
+    top: auto !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: calc(76px + env(safe-area-inset-bottom));
+    padding: 16px 24px calc(16px + env(safe-area-inset-bottom)) !important;
+    gap: 16px !important;
+    transform: none !important;
+    justify-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: #000;
+  }
+  .labzNav .nav-pill {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 7px 10px 10px !important;
+    font-size: 16px !important;
+  }
+  .labzNav .nav-pill::before { content: '║ '; }
+  .labzNav .nav-pill::after { content: ' ║'; }
+}

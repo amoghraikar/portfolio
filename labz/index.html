@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amogh R Raikar — LABZ Terminal</title>
+  <meta name="description" content="Interactive MS-DOS systems lab &amp; developer terminal of Amogh R Raikar. Explore real-time code projects, machine learning models, blockchain nodes, and system experiments.">
+  <link rel="canonical" href="https://amoghraikar.github.io/portfolio/labz/">
+  <meta property="og:title" content="Amogh R Raikar — LABZ Terminal">
+  <meta property="og:description" content="Interactive MS-DOS systems lab &amp; developer terminal of Amogh R Raikar.">
+  <meta property="og:image" content="../assets/img/profile/amogh_raikar.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon-lm.ico" media="(prefers-color-scheme:light)">
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon-dm.ico" media="(prefers-color-scheme:dark)">
+  <link rel="shortcut icon" href="../assets/img/favicon/favicon-dm.ico">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    @font-face {
+      font-family: 'EurostileMNExtendedBold';
+      src: url('../assets/font/EurostileMNExtendedBold.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Ac437 Amstrad PC-2y';
+      src: url('../assets/font/Ac437_Amstrad_PC-2y.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+    }
+    :root {
+      --dos: #aeb5af;
+      --dim: #555b56;
+      --chaos-cursor: auto;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      color: var(--dos);
+    }
+    body, button, a {
+      cursor: var(--chaos-cursor) !important;
+    }
+    .terminal, .terminal * {
+      font-family: 'Ac437 Amstrad PC-2y', monospace, Arial, sans-serif !important;
+      font-synthesis: none;
+    }
+    .labzNav {
+      position: fixed;
+      top: 32px;
+      left: 50%;
+      z-index: 30;
+      display: flex;
+      gap: 14px;
+      transform: translateX(-50%);
+    }
+    .nav-pill {
+      height: 29px;
+      padding: 0 12px;
+      border: 1px solid #767676;
+      border-radius: 999px;
+      background: #000;
+      color: #767676;
+      font: 700 16px/27px EurostileMNExtendedBold, Arial, sans-serif;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .nav-pill.active {
+      border-color: #fff;
+      background: #fff;
+      color: #000;
+    }
+    .nav-pill:not(.active):hover {
+      border-color: #242424;
+      background: #242424;
+      color: #fff;
+    }
+    .terminal {
+      width: min(1500px, calc(100% - 48px));
+      height: 100vh;
+      margin: auto;
+      padding: 112px 0 0;
+      overflow: hidden;
+    }
+    .prompt, .volume {
+      margin: 0;
+      font-size: clamp(11px, 1.05vw, 15px);
+      line-height: 1.4;
+    }
+    .terminal-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 20px;
+      white-space: nowrap;
+    }
+    .chatter-line {
+      margin-left: auto;
+      text-align: right;
+    }
+    #chatterLine.iridescent {
+      color: hsl(0 100% 65%);
+      animation: chatterIridescent 2.2s linear infinite;
+    }
+    @keyframes chatterIridescent {
+      to { filter: hue-rotate(360deg); }
+    }
+    .prompt {
+      color: #f4f6f4;
+    }
+    .volume {
+      color: var(--dim);
+      transition: color 0.12s steps(2), text-shadow 0.12s steps(2);
+    }
+    .volume.is-scrambling {
+      text-shadow: 0 0 7px currentColor;
+    }
+    .volume.is-warning {
+      color: #ff3131;
+    }
+    .cursor-block {
+      display: inline-block;
+      width: 0.62em;
+      height: 1.05em;
+      margin-left: 0.25em;
+      background: var(--dos);
+      vertical-align: -0.16em;
+      animation: blink 0.72s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .dir-list {
+      position: relative;
+      overflow: visible;
+    }
+    .dir-head, .dir-row {
+      display: grid;
+      grid-template-columns: minmax(480px, 1fr) 180px 215px 150px 190px;
+      column-gap: 20px;
+      align-items: center;
+      min-width: 1295px;
+    }
+    .dir-head span, .dir-row span {
+      white-space: nowrap;
+    }
+    .dir-head {
+      position: sticky;
+      top: 112px;
+      z-index: 20;
+      height: 30px;
+      border-bottom: 1px dashed #303530;
+      background: #000;
+      color: #e9ece9;
+    }
+    .dir-viewport {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .dir-viewport::-webkit-scrollbar {
+      display: none;
+    }
+    .dir-row {
+      position: relative;
+      height: 24px;
+      padding: 2px 0;
+      color: var(--dim);
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.16s, transform 0.2s;
+    }
+    .dir-row.revealed {
+      opacity: 1;
+      transform: none;
+    }
+    .dir-row .size {
+      text-align: right;
+    }
+    .dir-row .type {
+      color: #737a74;
+    }
+    .dir-row.scrambling {
+      color: #9da49e;
+      text-shadow: 0 0 7px #505650;
+    }
+    .dir-row.keeper {
+      z-index: 8;
+      color: #f3f5f3;
+      text-decoration: none;
+      border-top: 1px solid #252a26;
+      border-bottom: 1px solid #252a26;
+      background: #0d100e;
+      opacity: 1;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .dir-row.keeper:hover {
+      background: #e9ece9;
+      color: #000;
+      border-color: #e9ece9;
+    }
+    .dir-row.keeper .type {
+      color: inherit;
+    }
+    .dir-row[hidden] {
+      display: none;
+    }
+    .status {
+      display: none;
+      padding: 24px 0;
+      color: var(--dim);
+      font-size: 13px;
+      margin: 24px 0;
+    }
+    .status.show {
+      display: block;
+    }
+    .status::after {
+      content: '_';
+      animation: blink 0.72s steps(1) infinite;
+    }
+    @media(max-width: 780px) {
+      .terminal {
+        width: calc(100% - 24px);
+        padding-top: 92px;
+      }
+      .labzNav {
+        top: 18px;
+        gap: 6px;
+      }
+      .nav-pill {
+        padding: 0 9px;
+        font-size: 12px;
+      }
+      .dir-head, .dir-row {
+        grid-template-columns: minmax(380px, 1fr) 130px 150px 110px 140px;
+        column-gap: 12px;
+        min-width: 960px;
+        font-size: 11px;
+      }
+      .ascii-stage {
+        width: calc(100% - 24px);
+      }
+    }
+    .dir-viewport {
+      height: calc(100vh - 205px - clamp(92px, 17vh, 170px));
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+    }
+    .dir-head {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 50 !important;
+      background: #000 !important;
+    }
+    .fall-char {
+      animation: none !important;
+      transform: none !important;
+    }
+    .terminal .arial-noise {
+      font-family: Arial, sans-serif !important;
+      font-weight: 400;
+    }
+    .terminal-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(3px);
+      animation: terminalReveal 0.24s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+      animation-delay: var(--char-delay);
+    }
+    @keyframes terminalReveal {
+      to { opacity: 1; transform: none; }
+    }
+    .dir-row {
+      transition: height 0.48s cubic-bezier(0.2, 0.8, 0.2, 1), font-size 0.48s cubic-bezier(0.2, 0.8, 0.2, 1), padding 0.48s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.16s, transform 0.2s;
+    }
+    .dir-row:hover {
+      height: 78px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      background: rgb(0, 0, 255) !important;
+      color: #fff !important;
+      text-shadow: none !important;
+      font-size: clamp(24px, 2.25vw, 34px);
+      z-index: 12;
+    }
+    .dir-row:hover .type {
+      color: #fff !important;
+    }
+    .dir-row.erasing {
+      color: #000 !important;
+      text-shadow: none !important;
+      opacity: 0;
+      transition: color 0.55s ease, opacity 0.75s ease;
+    }
+    .dir-row.keeper:hover {
+      background: rgb(0, 0, 255) !important;
+      color: #fff !important;
+      border-color: rgb(0, 0, 255) !important;
+    }
+    .cursor-trail {
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .chaos-pointer {
+      display: none;
+    }
+    .status {
+      position: fixed;
+      left: 24px;
+      bottom: 12px;
+      z-index: 55;
+      display: block !important;
+      margin: 0;
+    }
+    .empty {
+      display: none;
+      padding: 24px 0;
+      color: var(--dim);
+      font-size: 13px;
+    }
+    .empty.show {
+      display: block;
+    }
+    .dir-row, .dir-row.keeper {
+      height: 78px;
+      padding: 14px 0;
+      background: #000;
+      color: #fff;
+      font-size: clamp(24px, 2.25vw, 34px);
+      transition: background 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.16s, transform 0.2s;
+    }
+    .dir-row .type, .dir-row.keeper .type {
+      color: #fff;
+    }
+    .dir-row:hover, .dir-row.keeper:hover {
+      height: 78px;
+      padding: 14px 0;
+      background: rgb(0, 0, 255) !important;
+      color: #fff !important;
+      border-color: rgb(0, 0, 255) !important;
+    }
+    .dir-row.keeper .row-scroll-inner > span:first-child {
+      transform: translateX(0);
+      transition: transform 0.42s cubic-bezier(0.22, 0.78, 0.2, 1);
+    }
+    .dir-row.keeper:is(:hover, :active, .cursor-hit) .row-scroll-inner > span:first-child {
+      transform: translateX(14px);
+    }
+    .dir-head span:first-child {
+      transform: translateX(0);
+      transition: transform 0.42s cubic-bezier(0.22, 0.78, 0.2, 1);
+    }
+    .dir-list:has(.dir-row.keeper:is(:hover, :active, .cursor-hit)) .dir-head span:first-child {
+      transform: translateX(14px);
+    }
+    .dir-row.cursor-hit {
+      background: rgb(0, 0, 255) !important;
+      color: #fff !important;
+      text-shadow: none !important;
+    }
+    .dir-row.cursor-hit .type {
+      color: #fff !important;
+    }
+    .dir-row.keeper .row-scroll-inner > .roll-cell {
+      position: relative;
+      display: block;
+      height: 1.15em;
+      overflow: hidden;
+    }
+    .roll-track {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 2.3em;
+      display: flex;
+      flex-direction: column;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.68s cubic-bezier(0.22, 0.72, 0.18, 1);
+      transition-delay: 0s;
+      will-change: transform;
+    }
+    .roll-copy {
+      display: block;
+      width: 100%;
+      height: 1.15em;
+      line-height: 1.15em;
+      flex: 0 0 1.15em;
+    }
+    .dir-row.keeper:hover .roll-track {
+      transform: translate3d(0, -50%, 0);
+    }
+    .dir-row.keeper:hover .row-scroll-inner > .roll-cell:nth-child(1) .roll-track {
+      transition-delay: 0s;
+    }
+    .dir-row.keeper:hover .row-scroll-inner > .roll-cell:nth-child(2) .roll-track {
+      transition-delay: 0.07s;
+    }
+    .dir-row.keeper:hover .row-scroll-inner > .roll-cell:nth-child(3) .roll-track {
+      transition-delay: 0.14s;
+    }
+    .dir-row.keeper:hover .row-scroll-inner > .roll-cell:nth-child(4) .roll-track {
+      transition-delay: 0.21s;
+    }
+    .dir-row.keeper:hover .row-scroll-inner > .roll-cell:nth-child(5) .roll-track {
+      transition-delay: 0.28s;
+    }
+    .dir-row.scrambling {
+      color: var(--row-color, #9da49e) !important;
+      transition: color 0.12s linear;
+    }
+    .dir-row.keeper[data-category="fullstack"]:is(:hover, .cursor-hit) {
+      background: #0000ff !important;
+      color: #fff !important;
+      border-color: #0000ff !important;
+    }
+    .dir-row.keeper[data-category="aicv"]:is(:hover, .cursor-hit) {
+      background: #00ffc4 !important;
+      color: #000 !important;
+      border-color: #00ffc4 !important;
+    }
+    .dir-row.keeper[data-category="aicv"]:is(:hover, .cursor-hit) .type {
+      color: #000 !important;
+    }
+    .dir-row.keeper[data-category="blockchain"]:is(:hover, .cursor-hit) {
+      background: #a800ff !important;
+      color: #fff !important;
+      border-color: #a800ff !important;
+    }
+    .dir-row.keeper[data-category="systems"]:is(:hover, .cursor-hit) {
+      background: #ffaa00 !important;
+      color: #000 !important;
+      border-color: #ffaa00 !important;
+    }
+    .dir-row.keeper[data-category="systems"]:is(:hover, .cursor-hit) .type {
+      color: #000 !important;
+    }
+    .ascii-stage {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      z-index: 18;
+      width: min(1500px, calc(100% - 48px));
+      height: clamp(92px, 17vh, 170px);
+      margin: 0;
+      padding: 8px 0 0;
+      overflow: hidden;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, transparent 0, #000 18%);
+      color: #fff;
+      font-family: 'Courier New', monospace !important;
+      font-size: clamp(7px, 1.05vw, 15px);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: 0;
+      white-space: pre;
+      pointer-events: none;
+      opacity: 0;
+      transition: color 0.16s linear, opacity 0.18s ease;
+    }
+    .ascii-stage.show {
+      opacity: 1;
+    }
+    .status {
+      display: none !important;
+    }
+    .terminal .dir-viewport {
+      height: min(650px, calc(100vh - 205px - clamp(64px, 11vh, 112px))) !important;
+      max-height: none;
+      overflow-x: hidden !important;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 60px), transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 60px), transparent 100%);
+    }
+    .terminal .dir-viewport.has-scroll-top {
+      -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 30px, transparent 30px, #000 90px, #000 calc(100% - 60px), transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0, #000 30px, transparent 30px, #000 90px, #000 calc(100% - 60px), transparent 100%);
+    }
+    .dir-row {
+      display: block;
+      min-width: 0;
+    }
+    .row-scroll-inner {
+      display: grid;
+      grid-template-columns: minmax(480px, 1fr) 180px 215px 150px 190px;
+      column-gap: 20px;
+      align-items: center;
+      min-width: 1295px;
+      height: 100%;
+    }
+    .retro-scrollbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 60;
+      width: 28px;
+      height: 507px;
+      border: 2px solid #aeb5af;
+      background: #000;
+      color: #aeb5af;
+      user-select: none;
+      cursor: pointer !important;
+    }
+    .retro-scrollbar, .retro-scrollbar * {
+      cursor: pointer !important;
+    }
+    .retro-scroll-button {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      place-items: center;
+      border: 0;
+      border-bottom: 2px solid #aeb5af;
+      background: #000;
+      color: #aeb5af;
+      font: 18px/1 'Ac437 Amstrad PC-2y', monospace;
+    }
+    .retro-scroll-button:last-child {
+      position: absolute;
+      bottom: 0;
+      border-top: 2px solid #aeb5af;
+      border-bottom: 0;
+    }
+    .retro-scroll-button:hover {
+      background: #00f;
+      color: #fff;
+    }
+    .retro-scroll-track {
+      position: absolute;
+      top: 26px;
+      right: 0;
+      bottom: 26px;
+      left: 0;
+      background: repeating-conic-gradient(#777 0 25%, #000 0 50%) 0 0/4px 4px;
+    }
+    .retro-scroll-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      border: 0;
+      background: transparent;
+      writing-mode: vertical-lr;
+      direction: ltr;
+    }
+    .retro-scroll-thumb::-webkit-slider-runnable-track {
+      width: 24px;
+      height: 100%;
+      background: transparent;
+    }
+    .retro-scroll-thumb::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 200px;
+      border: 2px solid #aeb5af;
+      border-radius: 0;
+      background: #000;
+      box-shadow: inset 0 0 0 1px #000;
+    }
+    .retro-scroll-thumb::-moz-range-track {
+      width: 24px;
+      height: 100%;
+      background: transparent;
+    }
+    .retro-scroll-thumb::-moz-range-thumb {
+      width: 20px;
+      height: 200px;
+      border: 2px solid #aeb5af;
+      border-radius: 0;
+      background: #000;
+    }
+    .retro-scroll-thumb:active::-webkit-slider-thumb {
+      background: #00f;
+      border-color: #fff;
+    }
+    .retro-scroll-thumb:active::-moz-range-thumb {
+      background: #00f;
+      border-color: #fff;
+    }
+    @media(max-width: 780px), (hover: none) and (pointer: coarse) {
+      .retro-scrollbar {
+        display: none !important;
+      }
+      .scroll-cue {
+        display: none !important;
+      }
+      .terminal .dir-viewport {
+        height: calc(100dvh - 205px) !important;
+        max-height: none;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
+      }
+      .dir-row {
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .dir-row::-webkit-scrollbar {
+        display: none;
+      }
+      .row-scroll-inner {
+        grid-template-columns: minmax(380px, 1fr) 130px 150px 110px 140px;
+        column-gap: 12px;
+        min-width: 960px;
+      }
+      .dir-head {
+        overflow: hidden;
+      }
+      #fileRows {
+        padding-bottom: calc(112px + env(safe-area-inset-bottom));
+      }
+    }
+    .ascii-stage {
+      height: clamp(64px, 11vh, 112px);
+      padding-top: 4px;
+      font-size: clamp(5px, 0.72vw, 10px);
+      line-height: 0.9;
+    }
+    @media(min-width: 781px) and (hover: hover) {
+      :root {
+        --labz-top-safe: clamp(96px, 10vh, 120px);
+        --labz-ascii-height: clamp(64px, 11vh, 112px);
+        --labz-ascii-gap: clamp(80px, 14vh, 176px);
+      }
+      .terminal {
+        position: fixed;
+        top: var(--labz-top-safe);
+        bottom: calc(var(--labz-ascii-height) + var(--labz-ascii-gap));
+        left: 50%;
+        display: flex;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        justify-content: center;
+        transform: translateX(-50%);
+      }
+      .terminal-heading, .terminal .dir-viewport {
+        flex: 0 0 auto;
+      }
+      .terminal .dir-viewport {
+        height: min(650px, calc(100dvh - var(--labz-top-safe) - var(--labz-ascii-height) - var(--labz-ascii-gap))) !important;
+      }
+      .ascii-stage {
+        height: var(--labz-ascii-height);
+        text-align: center;
+      }
+    }
+    @media(min-width: 781px) and (hover: hover) {
+      .terminal .dir-viewport {
+        flex: 0 1 auto;
+        min-height: 0;
+      }
+      .terminal .dir-viewport.has-scroll-top:not(.has-scroll-bottom) {
+        -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 30px, transparent 30px, #000 90px, #000 100%);
+        mask-image: linear-gradient(to bottom, #000 0, #000 30px, transparent 30px, #000 90px, #000 100%);
+      }
+      .terminal .dir-viewport.at-scroll-end {
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop-view-notice" role="status">BEST VIEWED ON DESKTOP</div>
+  <canvas class="cursor-trail" id="cursorTrail" aria-hidden="true"></canvas>
+
+  <nav class="interface" aria-label="Amogh Raikar home">
+    <div class="brand-nav">
+      <span class="tokonoma-logo-frame">
+        <a class="tokonoma-logo-link" href="../index.html" aria-label="Back to Portfolio home">
+          <span class="made-by">Portfolio</span>
+          <img class="tokonoma-logo" src="../assets/img/misc/tokonoma_logo.png" alt="Amogh R Raikar">
+          <span class="tokonoma-logo-bye" aria-hidden="true">👋</span>
+        </a>
+      </span>
+    </div>
+  </nav>
+
+  <div class="chaos-pointer" id="chaosPointer" aria-hidden="true">＋</div>
+
+  <div class="retro-scrollbar" id="retroScrollbar" aria-label="Project list scrollbar">
+    <button class="retro-scroll-button" id="retroScrollUp" type="button" aria-label="Scroll up">▲</button>
+    <div class="retro-scroll-track" id="retroScrollTrack">
+      <input class="retro-scroll-thumb" id="retroScrollThumb" type="range" min="0" max="1000" value="0" aria-label="Scroll project rows">
+    </div>
+    <button class="retro-scroll-button" id="retroScrollDown" type="button" aria-label="Scroll down">▼</button>
+  </div>
+
+  <div class="scroll-cue" id="scrollCue" aria-hidden="true">
+    <svg viewBox="0 0 44 44"><circle class="scroll-cue-ring" cx="22" cy="22" r="19"/><path class="scroll-cue-chevron" d="M13 18 L22 27 L31 18"/></svg>
+  </div>
+  <div class="scroll-cue hide" id="scrollCueUp" aria-hidden="true">
+    <svg viewBox="0 0 44 44"><circle class="scroll-cue-ring" cx="22" cy="22" r="19"/><path class="scroll-cue-chevron" d="M13 26 L22 17 L31 26"/></svg>
+  </div>
+
+  <nav class="labzNav">
+    <a class="nav-pill" href="../index.html">HOME</a>
+    <button class="nav-pill active" data-filter="all">ALL</button>
+    <button class="nav-pill" data-filter="fullstack">FULL-STACK</button>
+    <button class="nav-pill" data-filter="aicv">AI &amp; CV</button>
+    <button class="nav-pill" data-filter="blockchain">BLOCKCHAIN</button>
+    <button class="nav-pill" data-filter="systems">SYSTEMS</button>
+    <a class="nav-pill" href="../projects.html">PROJECTS</a>
+  </nav>
+
+  <main class="terminal">
+    <div class="terminal-heading">
+      <p class="prompt">C:\AMOGH\LABZ&gt; DIR /P<span class="cursor-block"></span></p>
+      <p class="volume" id="terminalStatusLine"><span class="volume-part" id="volumeDrive">Volume in drive C is AMOGH_CORE</span>&nbsp;\&nbsp;<span class="volume-part" id="volumeDirectory">Directory of C:\AMOGH\LABZ</span></p>
+      <p class="volume chatter-line" id="agencyChatterLine"><span class="volume-part" id="chatterLine">A NEW USER HAS ENTERED THE CHAT</span></p>
+    </div>
+    <div class="dir-viewport">
+      <div class="dir-list">
+        <div class="dir-head"><span>NAME</span><span>TYPE</span><span>DATE</span><span>TIME</span><span>SIZE</span></div>
+        <div id="fileRows"></div>
+      </div>
+    </div>
+    <p class="status" id="status">READING DIRECTORY</p>
+    <p class="empty" id="empty">NO MATCHING PROJECTS FOUND.</p>
+  </main>
+
+  <div class="agency-watch" aria-hidden="true">
+    <span id="agencyName" class="agency-name-window"><span class="agency-name-current">NSA</span></span>
+    <img src="assets/img/gif/eyes.gif" alt="">
+  </div>
+
+  <pre class="ascii-stage" id="asciiStage" aria-hidden="true"></pre>
+
+  <div class="page-blackout" aria-hidden="true"></div>
+  <div class="page-sweep" aria-hidden="true"></div>
+
+  <script src="assets/js/labz.js"></script>
+</body>
+</html>
