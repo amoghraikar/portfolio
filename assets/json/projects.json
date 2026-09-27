@@ -47,6 +47,7 @@
       "Category: Full-Stack / FinTech / ERP",
       "Stack: Flutter, Python, FastAPI, PostgreSQL, Redis, Docker, Riverpod",
       "Capabilities: Gold valuation, pledge tracking, interest calculations & billing",
+      "Live Demo: karatcore-erp.vercel.app",
       "GitHub: github.com/amoghraikar/Karatcore-ERP"
     ],
     "mentra-ai": [
@@ -55,7 +56,8 @@
       "Category: AI, Productivity & Computer Vision",
       "Stack: Python, AI Models, Computer Vision, FastAPI, Modern UI",
       "Capabilities: Task scheduling, gamified progress & CV attention monitoring",
-      "GitHub: github.com/amoghraikar"
+      "Live Demo: mentra-ai-studycoach.netlify.app",
+      "GitHub: github.com/amoghraikar/MentraAI"
     ],
     "mini-blockchain": [
       "Project: Mini Blockchain",

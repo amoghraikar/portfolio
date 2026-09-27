@@ -113,9 +113,9 @@
         image,
         inLanguage: 'en',
         ...(section === 'HOME' ? {
-          founder: { '@type': 'Person', name: 'Redouane Oumahi', jobTitle: 'Image Maker and Artist' },
+          founder: { '@type': 'Person', name: 'Amogh R Raikar', jobTitle: 'Software Developer & Creative Technologist' },
           areaServed: 'Worldwide',
-          sameAs: ['https://www.instagram.com/tokonoma.xyz/']
+          sameAs: ['https://github.com/amoghraikar', 'https://linkedin.com/in/amoghrraikar', 'https://instagram.com/amogh.raikar']
         } : { isPartOf: { '@type': 'WebSite', name: 'Amogh R Raikar', url: seoBaseUrl } })
       }
     });
@@ -4032,7 +4032,7 @@
                 <a class="viewer-static-pill" href="https://github.com/amoghraikar/Karatcore-ERP" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: KARATCORE-ERP</span></a>
                 <h3>MENTRA — AI STUDY COACH</h3>
                 <p>AI-powered academic companion featuring attention monitoring, study assistants, and gamified productivity dashboards.</p>
-                <a class="viewer-static-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">VIEW ON GITHUB</span></a>
+                <a class="viewer-static-pill" href="https://github.com/amoghraikar/MentraAI" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: MENTRA-AI</span></a>
                 <h3>MINI BLOCKCHAIN</h3>
                 <p>Python-based distributed ledger implementation demonstrating cryptographic hashing (SHA-256), block validation, and Proof-of-Work consensus.</p>
                 <a class="viewer-static-pill" href="https://github.com/amoghraikar/blockchain-project-1" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: BLOCKCHAIN-PROJECT-1</span></a>
@@ -4057,16 +4057,16 @@
                 <p>Bengaluru, Karnataka, India</p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>EMAIL</h3>
-                <p><a class="viewer-static-pill" href="mailto:amoghrraikar@gmail.com"><span class="viewer-static-pill-label">AMOGHRAIKAR@GMAIL.COM</span></a></p>
+                <p><a class="viewer-static-pill" href="mailto:amoghrraikar@gmail.com"><span class="viewer-static-pill-label">AMOGHRRAIKAR@GMAIL.COM</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>GITHUB</h3>
                 <p><a class="viewer-static-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB.COM/AMOGHRAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>LINKEDIN</h3>
-                <p><a class="viewer-static-pill" href="https://linkedin.com/in/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">LINKEDIN.COM/IN/AMOGHRAIKAR</span></a></p>
+                <p><a class="viewer-static-pill" href="https://linkedin.com/in/amoghrraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">LINKEDIN.COM/IN/AMOGHRRAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
-                <h3>X / TWITTER</h3>
-                <p><a class="viewer-static-pill" href="https://x.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">X.COM/AMOGHRAIKAR</span></a></p>
+                <h3>INSTAGRAM</h3>
+                <p><a class="viewer-static-pill" href="https://instagram.com/amogh.raikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">INSTAGRAM.COM/AMOGH.RAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>CONNECT</h3>
                 <p>Always open to exciting opportunities, innovative software projects, and tech conversations.</p>
@@ -8544,7 +8544,7 @@
                 <a class="viewer-static-pill" href="https://github.com/amoghraikar/Karatcore-ERP" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: KARATCORE-ERP</span></a>
                 <h3>MENTRA — AI STUDY COACH</h3>
                 <p>AI-powered academic companion featuring attention monitoring, study assistants, and gamified productivity dashboards.</p>
-                <a class="viewer-static-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">VIEW ON GITHUB</span></a>
+                <a class="viewer-static-pill" href="https://github.com/amoghraikar/MentraAI" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: MENTRA-AI</span></a>
                 <h3>MINI BLOCKCHAIN</h3>
                 <p>Python-based distributed ledger implementation demonstrating cryptographic hashing (SHA-256), block validation, and Proof-of-Work consensus.</p>
                 <a class="viewer-static-pill" href="https://github.com/amoghraikar/blockchain-project-1" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: BLOCKCHAIN-PROJECT-1</span></a>
@@ -8569,16 +8569,16 @@
                 <p>Bengaluru, Karnataka, India</p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>EMAIL</h3>
-                <p><a class="viewer-static-pill" href="mailto:amoghrraikar@gmail.com"><span class="viewer-static-pill-label">AMOGHRAIKAR@GMAIL.COM</span></a></p>
+                <p><a class="viewer-static-pill" href="mailto:amoghrraikar@gmail.com"><span class="viewer-static-pill-label">AMOGHRRAIKAR@GMAIL.COM</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>GITHUB</h3>
                 <p><a class="viewer-static-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB.COM/AMOGHRAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>LINKEDIN</h3>
-                <p><a class="viewer-static-pill" href="https://linkedin.com/in/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">LINKEDIN.COM/IN/AMOGHRAIKAR</span></a></p>
+                <p><a class="viewer-static-pill" href="https://linkedin.com/in/amoghrraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">LINKEDIN.COM/IN/AMOGHRRAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
-                <h3>X / TWITTER</h3>
-                <p><a class="viewer-static-pill" href="https://x.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">X.COM/AMOGHRAIKAR</span></a></p>
+                <h3>INSTAGRAM</h3>
+                <p><a class="viewer-static-pill" href="https://instagram.com/amogh.raikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">INSTAGRAM.COM/AMOGH.RAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>CONNECT</h3>
                 <p>Always open to exciting opportunities, innovative software projects, and tech conversations.</p>
@@ -12400,7 +12400,7 @@
                 <a class="viewer-static-pill" href="https://github.com/amoghraikar/Karatcore-ERP" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: KARATCORE-ERP</span></a>
                 <h3>MENTRA — AI STUDY COACH</h3>
                 <p>AI-powered academic companion featuring attention monitoring, study assistants, and gamified productivity dashboards.</p>
-                <a class="viewer-static-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">VIEW ON GITHUB</span></a>
+                <a class="viewer-static-pill" href="https://github.com/amoghraikar/MentraAI" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: MENTRA-AI</span></a>
                 <h3>MINI BLOCKCHAIN</h3>
                 <p>Python-based distributed ledger implementation demonstrating cryptographic hashing (SHA-256), block validation, and Proof-of-Work consensus.</p>
                 <a class="viewer-static-pill" href="https://github.com/amoghraikar/blockchain-project-1" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB: BLOCKCHAIN-PROJECT-1</span></a>
@@ -12425,16 +12425,16 @@
                 <p>Bengaluru, Karnataka, India</p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>EMAIL</h3>
-                <p><a class="viewer-static-pill" href="mailto:amoghrraikar@gmail.com"><span class="viewer-static-pill-label">AMOGHRAIKAR@GMAIL.COM</span></a></p>
+                <p><a class="viewer-static-pill" href="mailto:amoghrraikar@gmail.com"><span class="viewer-static-pill-label">AMOGHRRAIKAR@GMAIL.COM</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>GITHUB</h3>
                 <p><a class="viewer-static-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">GITHUB.COM/AMOGHRAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>LINKEDIN</h3>
-                <p><a class="viewer-static-pill" href="https://linkedin.com/in/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">LINKEDIN.COM/IN/AMOGHRAIKAR</span></a></p>
+                <p><a class="viewer-static-pill" href="https://linkedin.com/in/amoghrraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">LINKEDIN.COM/IN/AMOGHRRAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
-                <h3>X / TWITTER</h3>
-                <p><a class="viewer-static-pill" href="https://x.com/amoghraikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">X.COM/AMOGHRAIKAR</span></a></p>
+                <h3>INSTAGRAM</h3>
+                <p><a class="viewer-static-pill" href="https://instagram.com/amogh.raikar" target="_blank" rel="noopener"><span class="viewer-static-pill-label">INSTAGRAM.COM/AMOGH.RAIKAR</span></a></p>
                 <div class="viewer-contact-divider">–</div>
                 <h3>CONNECT</h3>
                 <p>Always open to exciting opportunities, innovative software projects, and tech conversations.</p>

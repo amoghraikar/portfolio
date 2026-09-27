@@ -4,8 +4,8 @@ const EXT=['DAT','BIN','SYS','TMP','RAW','LOG','CFG','LUT','OBJ','GLSL','FX','ON
 const WORDS=['SIGNAL','MEMORY','VECTOR','MOTION','CURSOR','TRACKER','SHADER','CAMERA','BUFFER','MATRIX','GLITCH','FRAME','DEPTH','MESH','NOISE','POINTER','SCANLINE','TEXTURE','KERNEL','INPUT','OUTPUT','CACHE','FIELD','TRACE'];
 
 const projects={
-  0:{name:'KARATCORE_ERP.EXE',type:'FULL-STACK',href:'https://github.com/amoghraikar/karatcore',category:'fullstack'},
-  1:{name:'MENTRA_AI.SYS',type:'AI & CV',href:'https://github.com/amoghraikar/mentra-ai',category:'aicv'},
+  0:{name:'KARATCORE_ERP.EXE',type:'FULL-STACK',href:'https://github.com/amoghraikar/Karatcore-ERP',category:'fullstack'},
+  1:{name:'MENTRA_AI.SYS',type:'AI & CV',href:'https://github.com/amoghraikar/MentraAI',category:'aicv'},
   2:{name:'BLOCKCHAIN_POW.PY',type:'BLOCKCHAIN',href:'https://github.com/amoghraikar/mini-blockchain',category:'blockchain'},
   3:{name:'FASTAPI_ROUTER.BIN',type:'SYSTEMS',href:'https://github.com/amoghraikar',category:'systems'},
   4:{name:'GAZE_ESTIMATE.ONNX',type:'AI & CV',href:'https://github.com/amoghraikar',category:'aicv'},

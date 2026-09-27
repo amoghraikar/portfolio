@@ -5,79 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PROJECTS — Amogh R Raikar Architecture &amp; Works</title>
   <meta name="description" content="Selected projects by Amogh R Raikar spanning full-stack ERP systems, AI study assistants with computer vision, and cryptographic blockchain engines.">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16-dm.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32-dm.png" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="assets/css/styles.css?v=20260927-2">
   <style>
+    :root {
+      --cursor-color: #baff00;
+      --card-bg: #0d0d0d;
+      --border-color: #222;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Clean Header Nav (Free of physics engine interference) */
+    .projects-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 36px;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .projects-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .tokonoma-logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .tokonoma-logo {
+      display: block;
+      width: 30px;
+      height: 44px;
+      object-fit: contain;
+    }
+    .projects-nav-center {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .projects-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .p-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 20px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      background: transparent;
+      color: #999;
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      font-size: clamp(13px, 1.05vw, 15px);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .p-nav-pill:hover {
+      border-color: #fff;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .p-nav-pill.active {
+      border-color: #fff;
+      background: #fff;
+      color: #000;
+    }
+    .p-nav-pill.ai-pill:hover {
+      border-color: var(--cursor-color);
+      color: var(--cursor-color);
+    }
+    .p-nav-pill.github-pill {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+    }
+    .p-nav-pill.github-pill svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Page Container */
     .page-container {
-      position: relative;
-      z-index: 2;
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 140px 32px 80px;
+      padding: 120px 36px 90px;
     }
     .page-header {
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
     .page-title {
       font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
-      font-size: clamp(36px, 6vw, 72px);
-      line-height: .95;
-      letter-spacing: -0.02em;
-      margin: 0 0 16px;
+      font-size: clamp(38px, 6.5vw, 76px);
+      line-height: .92;
+      letter-spacing: -0.03em;
+      margin: 0 0 18px;
       color: #fff;
     }
     .page-subtitle {
-      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
-      font-size: clamp(15px, 1.4vw, 18px);
-      max-width: 650px;
-      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      font-size: clamp(14px, 1.2vw, 17px);
+      max-width: 720px;
+      line-height: 1.6;
       color: #888;
       margin: 0;
     }
+
+    /* Grid & Cards */
     .editorial-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 36px;
     }
     .project-card {
       position: relative;
-      background: #101010;
-      border: 1px solid #222;
-      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
       overflow: hidden;
-      cursor: pointer;
-      transition: border-color .28s ease, transform .28s ease;
-      text-decoration: none;
-      color: inherit;
       display: flex;
       flex-direction: column;
+      transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
     }
     .project-card:hover {
-      border-color: var(--cursor-color, #baff00);
-      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7);
     }
     .project-thumb-wrap {
       position: relative;
       width: 100%;
-      height: 240px;
+      height: 250px;
       overflow: hidden;
-      background: #050505;
+      background: #000;
     }
     .project-thumb {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .4s ease, filter .4s ease;
+      display: block;
+      transition: opacity .25s ease, transform .5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .project-card:hover .project-thumb {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
+
+    /* Interactive image gallery dots overlay on thumbnail */
+    .thumb-gallery-controls {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .thumb-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-size: 10px;
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+    .thumb-dot:hover, .thumb-dot.active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
     .project-info {
-      padding: 24px;
+      padding: 24px 28px 28px;
       display: flex;
       flex-direction: column;
       flex: 1;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
     }
     .project-name {
       font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
@@ -85,85 +228,122 @@
       font-weight: 700;
       color: #fff;
       margin-bottom: 8px;
+      letter-spacing: -0.01em;
     }
     .project-desc {
-      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
-      letter-spacing: 0.02em;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-size: 14px;
-      line-height: 1.5;
-      color: #aaa;
-      margin-bottom: 12px;
+      line-height: 1.6;
+      color: #999;
+      margin-bottom: 14px;
     }
     .project-stack {
-      font-family: 'AmstradPC', monospace, sans-serif;
-      font-size: 13px;
+      font-family: 'Ac437 Amstrad PC-2y', monospace, monospace;
+      font-size: 12px;
       color: var(--cursor-color, #baff00);
       margin-bottom: 14px;
+      letter-spacing: 0.02em;
     }
     .project-meta-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid #1f1f1f;
-      padding-top: 14px;
+      border-top: 1px solid #1a1a1a;
+      padding-top: 18px;
       margin-top: auto;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .project-tag {
       font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: .06em;
-      padding: 4px 10px;
+      font-size: 10px;
+      letter-spacing: .08em;
+      padding: 5px 12px;
       border-radius: 999px;
-      background: #1c1c1c;
-      color: #bbb;
+      background: #161616;
+      border: 1px solid #282828;
+      color: #888;
     }
-    .project-link-btn {
-      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
-      font-size: 12px;
-      color: #fff;
+    .project-action-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-action {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      height: 30px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-family: 'EurostileMNExtendedBold', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: all 0.2s ease;
     }
-    .project-link-btn:hover {
-      color: var(--cursor-color, #baff00);
+    .btn-action.demo {
+      background: #fff;
+      color: #000;
+      border: 1px solid #fff;
+    }
+    .btn-action.demo:hover {
+      background: var(--cursor-color, #baff00);
+      border-color: var(--cursor-color, #baff00);
+      color: #000;
+    }
+    .btn-action.github {
+      background: transparent;
+      color: #bbb;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .btn-action.github:hover {
+      color: #fff;
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 960px) {
+      .projects-nav-center { display: none; }
+      .projects-nav { padding: 14px 20px; }
+      .page-container { padding: 90px 20px 60px; }
+      .editorial-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Perimeter Interface Navigation -->
-  <nav class="interface" aria-label="Primary portfolio navigation">
-    <div class="brand-nav">
-      <span class="tokonoma-logo-frame">
+  <!-- Clean, Fixed Top Header Navigation -->
+  <header class="projects-nav" aria-label="Primary portfolio navigation">
+    <div class="projects-nav-left">
+      <a class="tokonoma-logo-link" href="index.html" aria-label="Amogh R Raikar Home">
         <img class="tokonoma-logo" src="assets/img/misc/tokonoma_logo.png" alt="Amogh R Raikar">
-      </span>
-      <a class="nav-pill vertical" href="about.html"><span class="nav-pill-label">ABOUT</span></a>
-      <a class="nav-pill vertical" href="index.html" style="background:#fff; color:#000;"><span class="nav-pill-label">HOME</span></a>
+      </a>
+      <a class="p-nav-pill" href="about.html">ABOUT</a>
     </div>
 
-    <div class="center-nav">
-      <a class="nav-pill" href="index.html"><span class="nav-pill-label">FULL-STACK</span></a>
-      <a class="nav-pill ai-pill" href="index.html"><span class="nav-pill-label">AI &amp; CV</span></a>
-      <a class="nav-pill" href="index.html"><span class="nav-pill-label">BLOCKCHAIN</span></a>
-      <a class="nav-pill labz-pill" href="labz/"><span class="nav-pill-label">LABZ</span></a>
-    </div>
+    <nav class="projects-nav-center">
+      <a class="p-nav-pill" href="index.html?cat=full-stack">FULL-STACK</a>
+      <a class="p-nav-pill ai-pill" href="index.html?cat=ai-cv">AI &amp; CV</a>
+      <a class="p-nav-pill" href="index.html?cat=blockchain">BLOCKCHAIN</a>
+      <a class="p-nav-pill active" href="projects.html" aria-current="page">PROJECTS</a>
+      <a class="p-nav-pill" href="labz/">LABZ</a>
+    </nav>
 
-    <div class="right-nav">
-      <a class="nav-pill" href="about.html#skills"><span class="nav-pill-label">SKILLS</span></a>
-      <a class="nav-pill vertical" href="contact.html"><span class="nav-pill-label">CONTACT</span></a>
-      <a class="nav-pill instagram-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <span class="nav-pill-label">
-          <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
-          </svg>
-        </span>
+    <div class="projects-nav-right">
+      <a class="p-nav-pill" href="about.html#skills">SKILLS</a>
+      <a class="p-nav-pill" href="contact.html">CONTACT</a>
+      <a class="p-nav-pill github-pill" href="https://github.com/amoghraikar" target="_blank" rel="noopener noreferrer" aria-label="Amogh on GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+        </svg>
       </a>
     </div>
-  </nav>
+  </header>
 
   <!-- Editorial Projects Index Grid -->
-  <div class="page-container">
+  <main class="page-container">
     <header class="page-header">
       <h1 class="page-title">SELECTED<br>INDEX</h1>
       <p class="page-subtitle">
@@ -172,69 +352,117 @@
     </header>
 
     <div class="editorial-grid">
-      <!-- KaratCore ERP -->
-      <a class="project-card" href="https://github.com/amoghraikar/Karatcore-ERP" target="_blank" rel="noopener">
+      <!-- 1. KaratCore ERP -->
+      <article class="project-card" data-slug="karatcore-erp">
         <div class="project-thumb-wrap">
-          <img class="project-thumb" src="assets/img/projects/karatcore-1.jpg" alt="KaratCore ERP Dashboard">
+          <img class="project-thumb" id="thumb-karatcore-erp" src="assets/img/projects/karatcore-1.jpg" alt="KaratCore ERP Dashboard">
+          <div class="thumb-gallery-controls" aria-label="Select KaratCore image">
+            <button class="thumb-dot active" type="button" data-target="thumb-karatcore-erp" data-src="assets/img/projects/karatcore-1.jpg" title="1. Dashboard">1</button>
+            <button class="thumb-dot" type="button" data-target="thumb-karatcore-erp" data-src="assets/img/projects/karatcore-2.jpg" title="2. Reports & Analytics">2</button>
+            <button class="thumb-dot" type="button" data-target="thumb-karatcore-erp" data-src="assets/img/projects/karatcore-3.jpg" title="3. Platform Portal">3</button>
+          </div>
         </div>
         <div class="project-info">
           <div>
             <div class="project-name">KARATCORE ERP</div>
-            <div class="project-desc">A comprehensive enterprise management platform for jewellery businesses and gold pledge-loan operations. Features gold valuation calculation, pledge tracking, interest calculations, payments, and financial reporting.</div>
+            <div class="project-desc">
+              Comprehensive enterprise management platform engineered for jewellery retail operations and gold pledge-loan management. Features real-time bullion valuation, pledge collateral tracking, automated interest calculations, and financial reporting.
+            </div>
             <div class="project-stack">&gt; Flutter / Python / FastAPI / PostgreSQL / Redis / Docker</div>
           </div>
           <div class="project-meta-bar">
             <span class="project-tag">FINTECH / ERP</span>
-            <span class="project-link-btn">GITHUB &rarr;</span>
+            <div class="project-action-links">
+              <a class="btn-action demo" href="https://karatcore-erp.vercel.app" target="_blank" rel="noopener">LIVE DEMO &nearr;</a>
+              <a class="btn-action github" href="https://github.com/amoghraikar/Karatcore-ERP" target="_blank" rel="noopener">GITHUB &rarr;</a>
+            </div>
           </div>
         </div>
-      </a>
+      </article>
 
-      <!-- Mentra AI -->
-      <a class="project-card" href="https://github.com/amoghraikar" target="_blank" rel="noopener">
+      <!-- 2. Mentra AI -->
+      <article class="project-card" data-slug="mentra-ai">
         <div class="project-thumb-wrap">
-          <img class="project-thumb" src="assets/img/projects/mentra-1.jpg" alt="Mentra AI Study Coach">
+          <img class="project-thumb" id="thumb-mentra-ai" src="assets/img/projects/mentra-1.jpg" alt="Mentra AI Study Coach">
+          <div class="thumb-gallery-controls" aria-label="Select Mentra image">
+            <button class="thumb-dot active" type="button" data-target="thumb-mentra-ai" data-src="assets/img/projects/mentra-1.jpg" title="1. Dashboard">1</button>
+            <button class="thumb-dot" type="button" data-target="thumb-mentra-ai" data-src="assets/img/projects/mentra-2.jpg" title="2. Focus & CV Engine">2</button>
+            <button class="thumb-dot" type="button" data-target="thumb-mentra-ai" data-src="assets/img/projects/mentra-3.jpg" title="3. AI Coach">3</button>
+          </div>
         </div>
         <div class="project-info">
           <div>
             <div class="project-name">MENTRA — AI STUDY COACH</div>
-            <div class="project-desc">An AI-powered academic companion designed to help students organize study routines, track goals, and maintain focus. Integrates AI study assistants, gamified progress metrics, and computer-vision gaze and attention tracking.</div>
+            <div class="project-desc">
+              Intelligent academic companion integrating real-time gaze and attention tracking, conversational AI study assistants, task scheduling, and gamified productivity progress metrics.
+            </div>
             <div class="project-stack">&gt; Python / Computer Vision / AI Models / FastAPI / Web UI</div>
           </div>
           <div class="project-meta-bar">
             <span class="project-tag">AI / COMPUTER VISION</span>
-            <span class="project-link-btn">EXPLORE &rarr;</span>
+            <div class="project-action-links">
+              <a class="btn-action demo" href="https://mentra-ai-studycoach.netlify.app" target="_blank" rel="noopener">LIVE DEMO &nearr;</a>
+              <a class="btn-action github" href="https://github.com/amoghraikar/MentraAI" target="_blank" rel="noopener">GITHUB &rarr;</a>
+            </div>
           </div>
         </div>
-      </a>
+      </article>
 
-      <!-- Mini Blockchain -->
-      <a class="project-card" href="https://github.com/amoghraikar/blockchain-project-1" target="_blank" rel="noopener">
+      <!-- 3. Mini Blockchain -->
+      <article class="project-card" data-slug="mini-blockchain">
         <div class="project-thumb-wrap">
-          <img class="project-thumb" src="assets/img/projects/blockchain-1.jpg" alt="Mini Blockchain Engine">
+          <img class="project-thumb" id="thumb-mini-blockchain" src="assets/img/projects/blockchain-1.jpg" alt="Mini Blockchain Engine">
+          <div class="thumb-gallery-controls" aria-label="Select Blockchain image">
+            <button class="thumb-dot active" type="button" data-target="thumb-mini-blockchain" data-src="assets/img/projects/blockchain-1.jpg" title="1. Core Engine">1</button>
+            <button class="thumb-dot" type="button" data-target="thumb-mini-blockchain" data-src="assets/img/projects/blockchain-2.jpg" title="2. Blocks & Mempool">2</button>
+            <button class="thumb-dot" type="button" data-target="thumb-mini-blockchain" data-src="assets/img/projects/blockchain-3.jpg" title="3. Proof of Work">3</button>
+          </div>
         </div>
         <div class="project-info">
           <div>
             <div class="project-name">MINI BLOCKCHAIN</div>
-            <div class="project-desc">A Python-based blockchain system implementing core distributed ledger mechanics. Explores cryptographic SHA-256 block hashing, chain immutability validation, transaction mempools, and Proof-of-Work consensus.</div>
-            <div class="project-stack">&gt; Python / Cryptographic Hashing / Proof-of-Work / P2P</div>
+            <div class="project-desc">
+              Python-based distributed ledger implementation demonstrating cryptographic block chaining, mempool transaction validation, and Proof-of-Work mining consensus.
+            </div>
+            <div class="project-stack">&gt; Python / Cryptographic SHA-256 / Proof-of-Work / P2P</div>
           </div>
           <div class="project-meta-bar">
             <span class="project-tag">BLOCKCHAIN / SYSTEMS</span>
-            <span class="project-link-btn">GITHUB &rarr;</span>
+            <div class="project-action-links">
+              <a class="btn-action github" href="https://github.com/amoghraikar/blockchain-project-1" target="_blank" rel="noopener">GITHUB &rarr;</a>
+            </div>
           </div>
         </div>
-      </a>
+      </article>
     </div>
-  </div>
+  </main>
 
-  <div class="cursor-action" id="cursorAction" aria-hidden="true">
-    <span class="cursor-action-label" id="cursorActionLabel"></span>
-  </div>
+  <script>
+    // Lightweight interactive gallery switcher for cards
+    document.querySelectorAll('.thumb-dot').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const targetId = btn.dataset.target;
+        const newSrc = btn.dataset.src;
+        const img = document.getElementById(targetId);
+        if (!img || !newSrc) return;
 
-  <div class="labz-page-blackout" aria-hidden="true"></div>
-  <div class="labz-page-sweep" aria-hidden="true"></div>
+        // Update active dot in this group
+        const group = btn.closest('.thumb-gallery-controls');
+        group.querySelectorAll('.thumb-dot').forEach(d => d.classList.remove('active'));
+        btn.classList.add('active');
 
-  <script src="assets/js/app.js?v=20260927-1" defer></script>
+        // Smooth image cross-fade
+        img.style.opacity = '0.4';
+        const temp = new Image();
+        temp.onload = () => {
+          img.src = newSrc;
+          img.style.opacity = '1';
+        };
+        temp.src = newSrc;
+      });
+    });
+  </script>
 </body>
 </html>
